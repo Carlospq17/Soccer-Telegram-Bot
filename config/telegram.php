@@ -32,13 +32,14 @@ return [
     |             ]
     */
     'bots'                         => [
-        'mybot' => [
+        'soccer_bot_laravel_v1.0' => [
             'username'            => env('TELEGRAM_USERNAME'),
-            'token'               => env('TELEGRAM_BOT_TOKEN', 'YOUR-BOT-TOKEN'),
+            'token'               => env('TELEGRAM_BOT_TOKEN'),
             'certificate_path'    => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
             'webhook_url'         => env('TELEGRAM_WEBHOOK_URL', 'YOUR-BOT-WEBHOOK-URL'),
             'commands'            => [
                 //Acme\Project\Commands\MyTelegramBot\BotCommand::class
+                App\Telegram\Commands\Start::class
             ],
         ],
 
@@ -57,7 +58,7 @@ return [
     | your default bot for regular use.
     |
     */
-    'default'                      => 'mybot',
+    'default'                      => 'soccer_bot_laravel_v1.0',
 
     /*
     |--------------------------------------------------------------------------

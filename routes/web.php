@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\TelegramController;
 use Illuminate\Support\Facades\Route;
+use Telegram\Bot\Laravel\Facades\Telegram;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::any('/', [TelegramController::class, 'index']);
+
+Route::post('/{token}/webhook', function () {
+    Log::debug('Webhook In action');
+    $update = Telegram::commandsHandler(true);
+
+    // Commands handler method returns an Update object.
+    // So you can further process $update object
+    // to however you want.
+
+    return 'ok';
 });
+
+Route::any('/setWebhook', [TelegramController::class, 'setWebhook']);
